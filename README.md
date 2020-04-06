@@ -1,3 +1,3 @@
 # Unet
-Customized implementation of U-net, trained on pascal voc dataset with 21 target classes.
-The model was trained on 2013 images.
+Customized implementation of U-net.
+The model was trained on pascal voc dataset,2013 images of 21 target classes .
