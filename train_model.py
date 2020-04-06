@@ -17,7 +17,7 @@ from albumentations import (HorizontalFlip, VerticalFlip, Compose, Resize,Normal
 import copy
 from  Unet import Unet
 from  dataset import DataSet
-from  bce_loss import *
+from  ce_loss import *
 
 class TrainUnet(object):
   def __init__(self,args,saved_weights):
