@@ -2,15 +2,15 @@ import torch
 from torch import nn
 
 
-class BCE_Loss(nn.Module):    
+class CE_Loss(nn.Module):    
     def __init__(self):
-        super(BCE_Loss, self).__init__()
-        self.bce_loss = nn.CrossEntropyLoss(reduction="mean")
+        super(CE_Loss, self).__init__()
+        self.ce_loss = nn.CrossEntropyLoss(reduction="mean")
     
     def forward(self, predicted, target):
         predict = predicted
         target = target
-        return self.bce_loss(predict, target)
+        return self.ce_loss(predict, target)
 
 def dice_loss(predicted,target,smooth=0.01):    
     batch_size=predicted.size()[0] 
@@ -27,13 +27,13 @@ def dice_loss(predicted,target,smooth=0.01):
     return loss.mean().item()
 
 class combined_loss(nn.Module):
-    def __init__(self,bce_weight):
+    def __init__(self,ce_weight):
         super(combined_loss, self).__init__()
-        self.bce_loss = BCE_Loss() 
-        self.weight=bce_weight
+        self.ce_loss = CE_Loss() 
+        self.weight=ce_weight
 
     def forward(self,predicted, target):        
-        bce_loss=self.bce_loss(predicted,target)
+        ce_loss=self.ce_loss(predicted,target)
         dc_loss=dice_loss(predicted,target,self.weight)
-        loss = bce_loss* self.weight + dc_loss * (1 - self.weight)
-        return bce_loss,dc_loss,loss 
+        loss = ce_loss* self.weight + dc_loss * (1 - self.weight)
+        return ce_loss,dc_loss,loss 
