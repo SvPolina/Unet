@@ -38,7 +38,7 @@ class TrainUnet(object):
     
     ####
     if saved_weights:
-       self.model.load_state_dict(torch.load(self.args.path+'/Unet_results'+'/mytraining.pt'))
+       self.model.load_state_dict(torch.load(self.args.path+'/Unet_results'+'/training_results.pt'))
     ####   
     self.model.cuda()
     self.train_hist= {'tot_loss_validation': [],                      
@@ -128,7 +128,7 @@ class TrainUnet(object):
       print('---End training---')    
       self.train_hist['total_time'].append((time.time()-start_time))   
       self.plot_results()
-      torch.save(self.best_model_wts, self.args.path+'/Unet_results'+'/mytraining.pt')
+      torch.save(self.best_model_wts, self.args.path+'/Unet_results'+'/training_results.pt')
       self.model.load_state_dict(self.best_model_wts) 
       return self.model
       
