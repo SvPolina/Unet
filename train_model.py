@@ -134,13 +134,13 @@ class TrainUnet(object):
       
            
 def parse_arguments(): 
-     parser=argparse.ArgumentParser(description='Process some integers.')
+     parser=argparse.ArgumentParser()
      parser.add_argument('--num_epochs', type=int, default=35, help='The number of epochs to run') 
      parser.add_argument('--lrG', type=float, default=0.0001)
      parser.add_argument('--beta1', type=float, default=0.9)
      parser.add_argument('--beta2', type=float, default=0.999)
      parser.add_argument('--batch_size', type=int, default=16) 
-     parser.add_argument('--path', type=str, default='/content/gdrive/My Drive/gdrive') 
+     parser.add_argument('--path', type=str, default='your_path') 
      return parser.parse_args()
 
 
