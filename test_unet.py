@@ -33,7 +33,7 @@ def test_model(model,test_loader):
 
 def parse_arguments(): 
      parser=argparse.ArgumentParser()
-     parser.add_argument('--path', type=str, default='/content/gdrive/My Drive/gdrive') 
+     parser.add_argument('--path', type=str, default='your_path_') 
      return parser.parse_args() 
 
 if __name__ == '__main__':
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     model = Unet(3,21)
     model=model.cuda()
     
-    model.load_state_dict(torch.load(args.path+'/Unet_results'+'/mytraining.pt'))
+    model.load_state_dict(torch.load(args.path+'/Unet_results'+'/training_results.pt'))
     inputs,labels,predctions=test_model(model, test_loader)    
     inputs=inputs.cpu()
     labels=labels.cpu()
